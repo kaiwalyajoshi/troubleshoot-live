@@ -11,8 +11,14 @@
 # Output of the go coverage tool, specifically when used with LiteIDE
 *.out
 
+# GoLand and IntelliJ IDEA files
+.idea/
+
 # Dependency directories (remove the comment below to include it)
 # vendor/
 
 *-kubeconfig
 dist
+
+# Binary built via `go build`
+troubleshoot-live

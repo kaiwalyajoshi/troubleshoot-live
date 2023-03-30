@@ -68,6 +68,7 @@ func setupEnvtest(ctx context.Context, e *env.Env) (_ string, err error) {
 	e.EnsureBaseDirs(ctx)
 	e.EnsureVersionIsSet(ctx)
 	if !e.ExistsAndValid() {
+		// DELETEME@kjoshi: This is where the binaries are fetched and installed into HOME.
 		e.Fetch(ctx)
 	}
 	out := &bytes.Buffer{}
@@ -78,12 +79,15 @@ func setupEnvtest(ctx context.Context, e *env.Env) (_ string, err error) {
 }
 
 func createEnvtest(ctx context.Context, serverVersion versions.Spec) (*env.Env, error) {
+	// DELETEME@kjoshi: This is intended to be run on a desktop, and requires a HOME dir.
 	dataDir, err := store.DefaultStoreDir()
 	if err != nil {
 		return nil, err
 	}
 
 	logger := logr.FromContextOrDiscard(ctx)
+
+	// DELETEME@kjoshi: This pulls data from GCS storage.
 	return &env.Env{
 		Log:     logger,
 		Version: serverVersion,
@@ -94,7 +98,7 @@ func createEnvtest(ctx context.Context, serverVersion versions.Spec) (*env.Env, 
 		},
 		VerifySum:     false, // todo: expose?
 		ForceDownload: false, // todo: expose?
-		NoDownload:    false, // todo: expose?
+		NoDownload:    false, // todo: expose? // DELETEME@kjoshi: Maybe we should consider this if we want to do airgapped in the future?
 		Platform: versions.PlatformItem{
 			Platform: versions.Platform{
 				OS:   runtime.GOOS,
@@ -102,6 +106,6 @@ func createEnvtest(ctx context.Context, serverVersion versions.Spec) (*env.Env, 
 			},
 		},
 		FS:    afero.Afero{Fs: afero.NewOsFs()},
-		Store: store.NewAt(dataDir),
+		Store: store.NewAt(dataDir), // DELETEME@kjoshi: Creates a new store on HOME/XDG_DATA dir.
 	}, nil
 }
