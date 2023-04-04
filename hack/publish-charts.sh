@@ -34,7 +34,7 @@ helm package -d "${TEMP_DIR}/charts" "${ROOT_DIR}/charts/troubleshoot-live"
 # Create merged index.yaml file
 helm repo index --merge "${HELM_REPO_DIR}/index.yaml" "${TEMP_DIR}"
 
-mv "${TEMP_DIR}/charts/*"   "${HELM_REPO_DIR}/charts"
+mv "${TEMP_DIR}/charts/*" "${HELM_REPO_DIR}/charts"
 cp "${TEMP_DIR}/index.yaml" "${HELM_REPO_DIR}/index.yaml"
 
 echo ""
