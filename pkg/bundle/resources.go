@@ -30,7 +30,7 @@ func LoadResourcesFromFile(bundle afero.Fs, path string) (*unstructured.Unstruct
 		return nil, err
 	}
 
-	//nolint:nestif current code complexity isn't too high
+	//nolint:nestif // allows for readability
 	if strings.HasSuffix(path, ".json") {
 		// Format:
 		// - stored as unstructured.UnstructedList and items contain GVK info
