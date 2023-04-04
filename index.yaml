@@ -1,0 +1,15 @@
+apiVersion: v1
+entries:
+  troubleshoot-live:
+  - apiVersion: v2
+    appVersion: v0.1.0-dev
+    created: "2023-04-04T06:04:31.057070996Z"
+    description: A Helm chart for Kubernetes
+    digest: 498fc9760265fc4cfe663f2edcea710b54cd18d8bb027a14bbfaf23b10c928d7
+    icon: https://raw.githubusercontent.com/kubernetes/community/master/icons/svg/resources/unlabeled/pod.svg
+    name: troubleshoot-live
+    type: application
+    urls:
+    - https://github.com/kaiwalyajoshi/troubleshoot-live/releases/download/troubleshoot-live-0.1.0/troubleshoot-live-0.1.0.tgz
+    version: 0.1.0
+generated: "2023-04-04T06:04:31.057077697Z"
