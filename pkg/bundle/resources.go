@@ -6,7 +6,7 @@ import (
 	"fmt"
 	"strings"
 
-	//nolint:goimports
+	//nolint:goimports import is fine
 	"github.com/mhrabovcin/troubleshoot-live/pkg/utils"
 	"github.com/spf13/afero"
 	corev1 "k8s.io/api/core/v1"
@@ -30,7 +30,7 @@ func LoadResourcesFromFile(bundle afero.Fs, path string) (*unstructured.Unstruct
 		return nil, err
 	}
 
-	//nolint:nestif
+	//nolint:nestif current code complexity isn't too high
 	if strings.HasSuffix(path, ".json") {
 		// Format:
 		// - stored as unstructured.UnstructedList and items contain GVK info
