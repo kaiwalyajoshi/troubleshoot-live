@@ -46,4 +46,4 @@ release-snapshot:
 
 .PHONY: publish-helm-chart
 publish-helm-chart:
-	./hack/publish-charts.sh	
+	./hack/publish-charts.sh

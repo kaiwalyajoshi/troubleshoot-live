@@ -10,7 +10,7 @@ GIT_ORIGIN=${GIT_ORIGIN:-"$(git config --get remote.origin.url)"}
 # Clone or update repository.
 
 if [[ ! -d ${HELM_REPO_DIR} ]]; then
-  git clone --recursive --branch ${HELM_REPO_BRANCH} ${GIT_ORIGIN} ${HELM_REPO_DIR}
+  git clone --recursive --branch "${HELM_REPO_BRANCH}" "${GIT_ORIGIN}" "${HELM_REPO_DIR}"
 else
   pushd "${HELM_REPO_DIR}"
   git pull origin
@@ -25,17 +25,17 @@ fi
 # Source: https://github.com/helm/helm/issues/4482#issuecomment-452013778
 
 # Create temporary directories
-TEMP_DIR=`mktemp -d`
-mkdir -p ${TEMP_DIR}/charts
+TEMP_DIR=$(mktemp -d)
+mkdir -p "${TEMP_DIR}/charts"
 
 # Build new helm chart package
-helm package -d ${TEMP_DIR}/charts ${ROOT_DIR}/charts/troubleshoot-live
+helm package -d "${TEMP_DIR}/charts" "${ROOT_DIR}/charts/troubleshoot-live"
 
 # Create merged index.yaml file
-helm repo index --merge ${HELM_REPO_DIR}/index.yaml ${TEMP_DIR}
+helm repo index --merge "${HELM_REPO_DIR}/index.yaml" "${TEMP_DIR}"
 
-mv ${TEMP_DIR}/charts/*   ${HELM_REPO_DIR}/charts
-cp ${TEMP_DIR}/index.yaml ${HELM_REPO_DIR}/index.yaml
+mv "${TEMP_DIR}/charts/*"   "${HELM_REPO_DIR}/charts"
+cp "${TEMP_DIR}/index.yaml" "${HELM_REPO_DIR}/index.yaml"
 
 echo ""
 echo "Charts published to ${HELM_REPO_DIR}."
@@ -43,5 +43,4 @@ echo "To verify, issue: cd ${HELM_REPO_DIR} && git diff"
 echo "To release charts, commit new files and index.yaml"
 
 # Cleanup temporary directories.
-rm -rf ${TEMP_DIR}
-
+rm -rf "${TEMP_DIR}"
