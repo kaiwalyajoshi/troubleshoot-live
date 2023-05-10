@@ -1,7 +1,7 @@
 GORELEASER_PARALLELISM ?= $(shell nproc --ignore=1)
 GORELEASER_DEBUG ?= false
-export DOCKER_REGISTRY ?= ghcr.io
-export DOCKERHUB_ORG ?= mhrabovcin
+export DOCKER_REGISTRY ?= 897035003914.dkr.ecr.us-west-2.amazonaws.com
+export DOCKERHUB_ORG ?= mesosphere
 export GIT_TREE_STATE ?=
 
 .PHONY: test
