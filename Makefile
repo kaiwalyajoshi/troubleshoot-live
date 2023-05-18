@@ -4,8 +4,12 @@ export DOCKER_REGISTRY ?= 897035003914.dkr.ecr.us-west-2.amazonaws.com
 export DOCKERHUB_ORG ?= mesosphere
 export GIT_TREE_STATE ?=
 
+.PHONY: gogenerate
+gogenerate:
+	go generate ./...
+
 .PHONY: test
-test: tools.gotestsum
+test: tools.gotestsum gogenerate
 	gotestsum --format pkgname --junitfile unit-tests.xml --jsonfile test.json -- -coverprofile=cover.out ./... && \
 		go tool cover -func=cover.out
 
